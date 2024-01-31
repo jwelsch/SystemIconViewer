@@ -1,0 +1,29 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:SystemIconViewer"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="600"
+        x:Class="SystemIconViewer.MainWindow"
+        x:DataType="vm:MainViewModel"
+        WindowStartupLocation="CenterScreen"
+        Width="600"
+        Height="600"
+        Title="SystemIconViewer">
+    <Grid ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" Margin="10">
+      <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Path:</Label>
+      <TextBox Grid.Column="1" Grid.Row="0" x:Name="_pathTextBox" Width="480" Margin="0,0,5,0" Text="{Binding Path}" AcceptsReturn="False" />
+      <Button Grid.Column="2" Grid.Row="0" Click="FindButton_Clicked">Find</Button>
+      <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Orientation="Horizontal">
+        <Label VerticalAlignment="Center" Margin="0,0,10,0">Draw:</Label>
+        <CheckBox x:Name="_iconTransparentCheckBox" IsChecked="False" Margin="0,0,10,0">Transparent</CheckBox>
+        <CheckBox x:Name="_iconBlendCheckBox" IsChecked="False" Margin="0,0,10,0">Blend</CheckBox>
+        <CheckBox x:Name="_iconSelectedCheckBox" IsChecked="False" Margin="0,0,10,0">Selected</CheckBox>
+      </StackPanel>
+      <Image Grid.Column="1" Grid.Row="2" Source="{Binding SmallIcon}" Margin="10" IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
+      <Image Grid.Column="1" Grid.Row="3" Source="{Binding LargeIcon}" Margin="10" IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
+      <Image Grid.Column="1" Grid.Row="4" Source="{Binding ExtraLargeIcon}" Margin="10" IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
+      <Image Grid.Column="1" Grid.Row="5" Source="{Binding JumboIcon}" Margin="10" IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
+      <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Text="{Binding ErrorMessage}" Foreground="Red" IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+    </Grid>
+</Window>
